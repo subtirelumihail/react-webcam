@@ -2,7 +2,7 @@
   "name": "react-webcam",
   "version": "0.0.12",
   "description": "React webcam component",
-  "main": "dist/react-webcam.js",
+  "main": "src/react-webcam.js",
   "scripts": {
     "prepublish": "npm run build:umd",
     "build": "webpack src/react-webcam.js dist/react-webcam.js",
