@@ -35,7 +35,7 @@
     "babel-loader": "^5.1.4",
     "eslint": "^0.23",
     "eslint-config-airbnb": "0.0.6",
-    "eslint-plugin-react": "^2.3.0",
+    "eslint-plugin-react": "^2.7.1",
     "webpack": "^1.9.6"
   }
 }

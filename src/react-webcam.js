@@ -12,6 +12,10 @@ export default class Webcam extends Component {
     height: 480,
     width: 640,
     screenshotFormat: 'image/webp',
+    screenshotSize: {
+      height: 480,
+      width: 640
+    },
     onUserMedia: () => {}
   };
 
@@ -31,6 +35,7 @@ export default class Webcam extends Component {
       'image/png',
       'image/jpeg'
     ]),
+    screenshotSize: PropTypes.object,
     className: PropTypes.string
   };
 
@@ -176,12 +181,13 @@ export default class Webcam extends Component {
 
   getCanvas() {
     if (!this.state.hasUserMedia) return null;
+    const {screenshotSize} = this.props;
 
     const video = findDOMNode(this);
     if (!this.ctx) {
       let canvas = document.createElement('canvas');
-      canvas.height = video.clientHeight;
-      canvas.width = video.clientWidth;
+      canvas.height = screenshotSize.height || video.clientHeight;
+      canvas.width = screenshotSize.width || video.clientWidth;
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d');
     }
