@@ -288,8 +288,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var video = _reactDom.findDOMNode(this);
 	    if (!this.ctx) {
 	      var _canvas = document.createElement('canvas');
-	      _canvas.height = screenshotSize.height || video.clientHeight;
-	      _canvas.width = screenshotSize.width || video.clientWidth;
+	      _canvas.height = screenshotSize.height;
+	      _canvas.width = screenshotSize.width;
 	      this.canvas = _canvas;
 	      this.ctx = _canvas.getContext('2d');
 	    }
@@ -297,7 +297,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var ctx = this.ctx;
 	    var canvas = this.canvas;
 
-	    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+	    var sourceX = video.clientWidth - screenshotSize.width - 30;
+	    var sourceY = video.clientHeight - screenshotSize.height;
+	    var sourceWidth = screenshotSize.width;
+	    var sourceHeight = screenshotSize.height;
+	    var destWidth = sourceWidth;
+	    var destHeight = sourceHeight;
+	    var destX = canvas.width / 2 - destWidth / 2;
+	    var destY = canvas.height / 2 - destHeight / 2;
+
+	    ctx.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
 
 	    return canvas;
 	  };

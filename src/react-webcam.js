@@ -186,14 +186,24 @@ export default class Webcam extends Component {
     const video = findDOMNode(this);
     if (!this.ctx) {
       let canvas = document.createElement('canvas');
-      canvas.height = screenshotSize.height || video.clientHeight;
-      canvas.width = screenshotSize.width || video.clientWidth;
+      canvas.height = screenshotSize.height;
+      canvas.width = screenshotSize.width;
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d');
     }
 
-    const {ctx, canvas} = this;
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    var {ctx, canvas} = this;
+
+		var sourceX = video.clientWidth - screenshotSize.width - 30;
+    var sourceY = video.clientHeight - screenshotSize.height;
+    var sourceWidth = screenshotSize.width;
+    var sourceHeight = screenshotSize.height;
+    var destWidth = sourceWidth;
+    var destHeight = sourceHeight;
+    var destX = canvas.width / 2 - destWidth / 2;
+    var destY = canvas.height / 2 - destHeight / 2;
+
+    ctx.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
 
     return canvas;
   }
